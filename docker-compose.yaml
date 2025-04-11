@@ -1,0 +1,30 @@
+# testnet-repo/docker-compose.yaml
+version: '3.8' # Specify version
+
+volumes:
+  uploads:
+  data:
+  logs:
+
+configs:
+  app_config:
+    file: ./config.json # User provides this config file
+
+services:
+  server:
+    # Use the pre-built image from the registry
+    image: your-dockerhub-username/permastoreit-testnet:v0.1 # <-- KEY CHANGE
+    ports:
+      - "5000:5000"     # Map host TCP 5000 to container TCP 5000 (API)
+      - "8468:8468/udp" # Map host UDP 8468 to container UDP 8468 (Kademlia)
+    volumes:
+      - uploads:/app/uploads
+      - data:/app/data
+      - logs:/app/logs
+    configs:
+      - source: app_config
+        target: /app/config.json
+        read_only: true
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped # Optional: auto-restart node
