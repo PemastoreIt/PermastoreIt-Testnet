@@ -38,7 +38,7 @@ class ZKPDisabledError(APIError):
 
 class PermastoreItClient:
     """
-    A client library for interacting with the PermaStore 2.0 API.
+    A client library for interacting with the PermaStore 1.2.0 API.
 
     Example Usage:
         client = PermastoreItClient(base_url="http://127.0.0.1:5000")
