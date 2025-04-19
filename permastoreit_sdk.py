@@ -3,6 +3,7 @@
 import requests
 import os
 from typing import Dict, List, Optional, Any
+import mimetypes
 
 # --- Custom Exceptions ---
 
@@ -164,9 +165,21 @@ class PermastoreItClient:
 
         file_name = os.path.basename(file_path)
 
+         # --- Start Modification ---
+         # Explicitly guess the MIME type
+        content_type, encoding = mimetypes.guess_type(file_path)
+        if content_type is None:
+              # Fallback if guess fails - or you could raise an error
+              content_type = 'application/octet-stream'
+              print(f"Warning: Could not guess MIME type for {file_name}. Sending as {content_type}", file=sys.stderr) # Use stderr for warnings
+         # --- End Modification ---
+
         try:
             with open(file_path, 'rb') as f:
-                files = {'file': (file_name, f)} # Key 'file' must match FastAPI parameter name
+                  # --- Modified files dictionary ---
+                  # Pass tuple: (filename, file_object, content_type)
+                files = {'file': (file_name, f, content_type)}
+                  # --- End Modification ---
                 # Consider a longer timeout for uploads
                 upload_timeout = max(self.timeout * 2, 120) # e.g., double default or 2 mins
                 response = self._make_request("POST", "/upload", files=files, timeout=upload_timeout)
