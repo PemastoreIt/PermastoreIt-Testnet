@@ -34,10 +34,6 @@ The primary goals for this phase of the testnet are:
 
 * **ALPHA SOFTWARE:** Expect bugs, instability, and potential breaking changes or network resets without notice.
 * **NO DATA PERSISTENCE GUARANTEE:** Data stored on the testnet may be lost. Do not use it for important files.
-* **NO SECURITY:** There is **NO encryption** for data at rest or in transit. API endpoints are **unauthenticated**. Do not store sensitive information. ZKP verification is not implemented.
-* **Kademlia Implementation:** The DHT implementation is new and experimental. Issues with connectivity, lookups, or announcements are possible.
-* **Scalability:** While the JSON blockchain is replaced, the scalability of the SQLite backend and the Kademlia network under heavy load is untested.
-* **AI Model Effectiveness:** Deduplication ratios and tagging accuracy have not been formally benchmarked.
 
 ## Prerequisites
 
@@ -117,8 +113,8 @@ We appreciate testing related to:
 
 **Providing Feedback:**
 
-* Please report bugs, issues, or suggestions via **[Link to GitHub Issues for Testnet Repo - Placeholder]**
-* For general discussion or questions, join our **[Link to Discord/Forum - Placeholder]**
+* Please report bugs, issues, or suggestions via **(https://github.com/PemastoreIt/PermastoreIt-Testnet/issues)**
+* For general discussion or questions, join our Discord! **https://discord.gg/MSnmxC3cwG**
 
 Please include relevant logs, steps to reproduce, your `config.json` (excluding secrets if any were added), and details about your environment when reporting issues.
 
